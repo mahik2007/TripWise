@@ -186,14 +186,6 @@ Some planned improvements include:
 
 ---
 
-## 👥 Team Members
-
-* **Mahima Kumari** — Team Leader & Frontend (HTML/CSS, Git, Deployment)
-* **Komal** — Backend (Python/Django)
-* **Mansi** — AI Chatbot Integration
-* **Khushi Kumari** — JavaScript Logic
-* **Khushi Kumari** — JavaScript UI & Testing
-
 ---
 
 ## 🎓 Project Purpose
