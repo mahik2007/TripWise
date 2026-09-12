@@ -2,10 +2,12 @@
 <html>
 
 <head>
-    <title>Add Expense - TripWise</title>
+        <meta charset="UTF-8">
+<title>Add Expense - TripWise</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="image/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/theme.css?v=8">
 
     <style>
         * {
@@ -484,7 +486,7 @@
             }
         }
     </style>
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/responsive.css?v=8">
 
 </head>
 
@@ -515,7 +517,7 @@
             <a href="add_expense.html" class="active"><i class="fa-solid fa-wallet"></i> Expenses</a>
             <a href="summary.html"><i class="fa-solid fa-chart-pie"></i> Summary</a>
 
-            <a href="aboutus.html"><i class="fa-solid fa-circle-info"></i> About</a>
+
 
             <a href="contact.html" class="contact-btn">
                 <i class="fa-solid fa-phone"></i> Contact Us
@@ -550,11 +552,10 @@
         <label>Total Expense Amount</label>
         <input type="number" placeholder="Enter total amount">
 
-        <!-- MEMBER NAMES -->
+        <!-- MEMBER NAMES - populated dynamically from active trip by JS -->
         <!-- Dynamic member inputs will be generated here -->
         <div id="memberNamesContainer"></div>
-        <label>Member Name 1</label>
-        <input type="text" placeholder="Enter member name">
+
 
         <!-- EXPENSE 1 -->
         <div class="expense-block">
@@ -644,20 +645,20 @@
             <input type="text" placeholder="Enter name">
         </div>
 
-        <!-- MEMBER CARD (ONLY 1 FOR NOW) -->
-        <div class="members">
-            <h3 style="color:#14532d;">Split Among Members</h3>
-
-            <div class="card">
-                <div class="card-left">
-                    <i class="fa-solid fa-user-circle"></i>
-                    <span>Member Name 1</span>
-                </div>
-                <input type="number" placeholder="₹">
+        <!-- MEMBER CARDS - Dynamically populated by JS from active trip -->
+        <div class="members" id="splitMembersSection">
+            <h3 style="color:#14532d; margin-bottom:16px;">
+                <i class="fa-solid fa-users-between-lines"></i> Split Among Members
+            </h3>
+            <div id="memberCardsContainer">
+                <!-- JS will inject member cards here -->
+                <p style="color:#6b7280; text-align:center; padding:20px;">
+                    <i class="fa-solid fa-spinner fa-spin"></i> Loading trip members...
+                </p>
             </div>
         </div>
-        
-        <button onclick="location.href='summary.html'">Add Expense</button>
+
+        <button id="saveExpensesBtn">Save Expenses &amp; View Summary</button>
 
     </div>
 
@@ -678,9 +679,7 @@
 
             <!-- LEFT -->
             <div class="footer-left">
-                <a href="aboutus.html">
-                    <i class="fa-solid fa-circle-info"></i> About Us
-                </a>
+
 
                 <a href="contact.html">
                     <i class="fa-solid fa-phone"></i> Contact Us
@@ -693,7 +692,7 @@
 
             <!-- RIGHT -->
             <div class="footer-right">
-                © 2026 TripWise | BS AICS Capstone Project
+                © 2026 TripWise. All rights reserved.
             </div>
 
         </div>
@@ -855,35 +854,6 @@
         }
     </style>
 
-<script>
-function toggleChat(){
-    document.getElementById('chat-window').classList.toggle('open');
-}
-async function sendMessage(){
-    const input=document.getElementById('chat-input');
-    const messages=document.getElementById('chat-messages');
-    const userText=input.value.trim();
-    if(!userText) return;
-    messages.innerHTML+=`<div class="user-msg">${userText}</div>`;
-    input.value='';
-    messages.innerHTML+=`<div class="thinking-msg" id="thinking">TripWise AI is thinking...</div>`;
-    messages.scrollTop=messages.scrollHeight;
-    try{
-        const response=await fetch('http://127.0.0.1:8000/api/chatbot/',{
-            method:'POST',
-            headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({message:userText})
-        });
-        const data=await response.json();
-        document.getElementById('thinking').remove();
-        messages.innerHTML+=`<div class="bot-msg">${data.reply}</div>`;
-    }catch(error){
-        document.getElementById('thinking').remove();
-        messages.innerHTML+=`<div class="bot-msg">⚠️ Could not connect.?</div>`;
-    }
-    messages.scrollTop=messages.scrollHeight;
-}
-</script>
-<script src="js/script.js"></script>
+<script src="js/script.js?v=8"></script>
 </body>
 </html>

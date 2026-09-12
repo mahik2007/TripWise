@@ -146,6 +146,31 @@ nav {
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
 }
 
+.hero-text h2 {
+    color: #111827 !important;
+}
+
+[data-theme="dark"] .hero-text h2 {
+    color: #e6edf3 !important;
+}
+
+.stars {
+    color: #f59e0b;
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    margin: 8px 0 14px;
+}
+
+.chat-close {
+    border: 0;
+    background: transparent;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 4px;
+}
+
 .logo {
     gap: 14px;
     align-items: center;
@@ -196,7 +221,7 @@ nav {
     box-sizing: border-box;
 }
 
-@media(max-width:900px) {
+@media(max-width:1050px) {
     nav {
         padding: 12px 20px;
         justify-content: space-between;
@@ -205,6 +230,13 @@ nav {
 
     .nav-links {
         display: none !important;
+    }
+
+    /* With .nav-links hidden, space-between would otherwise center
+       the injected theme-toggle between logo and hamburger. */
+    #theme-toggle {
+        margin-left: auto;
+        margin-right: 10px;
     }
 
     .menu-btn {
@@ -228,11 +260,42 @@ nav {
         top: 72px;
         width: 260px;
         max-width: calc(100% - 24px);
+        /* Pages hide the sidebar with right: -250px, but this width
+           override to 260px left a strip on-screen while "closed".
+           Park it fully off-canvas; .sidebar.active (higher
+           specificity) still brings it back to right: 0. */
+        right: -300px;
+        height: calc(100% - 72px);
     }
 
     .sidebar a {
         font-size: 18px;
     }
+}
+
+/* The original hero had three flex children, which caused its illustration
+   and copy to collide on tablet-sized screens. */
+@media (min-width: 769px) and (max-width: 1100px) {
+    .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 0.8fr);
+        gap: 28px;
+        padding: 36px;
+    }
+
+    .hero-text,
+    .trust-wrapper,
+    .hero-image {
+        width: auto;
+    }
+
+    .hero-text { grid-column: 1; grid-row: 1; }
+    .hero-image { grid-column: 2; grid-row: 1 / span 2; }
+    .trust-wrapper { grid-column: 1; grid-row: 2; margin: 0; }
+
+    .hero-text h2 { font-size: clamp(42px, 6vw, 58px); }
+    .hero-text p { font-size: clamp(18px, 2.4vw, 23px); }
+    .hero-image img { width: 100%; height: auto; max-height: 320px; object-fit: contain; }
 }
 
 @media(max-width:768px) {
@@ -267,6 +330,24 @@ nav {
     .main {
         padding: 0 16px;
     }
+
+    .hero {
+        gap: 24px;
+        padding: 28px 20px;
+    }
+
+    .hero-text,
+    .trust-wrapper,
+    .hero-image {
+        width: 100%;
+        margin: 0;
+        align-items: center;
+    }
+
+    .hero-text h2 { font-size: clamp(38px, 12vw, 52px); }
+    .hero-text p { font-size: 18px; }
+    .hero-image img { width: min(100%, 360px); height: auto; object-fit: contain; }
+    .buttons { flex-wrap: wrap; }
 
     .about-box,
     .summary-box,
@@ -343,6 +424,16 @@ nav {
     }
 }
 
+/* Do not upscale the supplied destination photography beyond its native
+   resolution. This keeps imagery crisp while retaining a flexible grid. */
+.destination-section .card { width: min(100%, 280px); }
+.destination-section .card img { aspect-ratio: 16 / 10; height: auto; object-fit: cover; }
+
+@media(max-width:768px) {
+    .destination-section .card { width: min(100%, 300px); margin: 0; }
+    .destinations { gap: 16px; }
+}
+
 @media(max-width:480px) {
     nav {
         padding: 10px 14px;
@@ -398,4 +489,188 @@ nav {
         transform: none !important;
         opacity: 1 !important;
     }
+}
+
+/* ═══════════════════════════════════════════════════════
+   Liquid-Metal Button Treatment (site-wide)
+   After the 21st.dev LiquidMetalButton look: pill radius,
+   dark 1px ring, layered soft shadows, metallic top-edge
+   highlight, hover lift and pressed inset. Green fills are
+   intentionally untouched.
+   ═══════════════════════════════════════════════════════ */
+button:not(#theme-toggle):not(.menu-btn):not(.chat-close),
+.primary-btn,
+.secondary-btn,
+.contact-btn,
+.submit-btn {
+    border-radius: 100px !important;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.28),
+        0 0 0 1px rgba(0, 0, 0, 0.30),
+        0 2px 5px rgba(0, 0, 0, 0.15),
+        0 9px 9px rgba(0, 0, 0, 0.12),
+        0 20px 12px rgba(0, 0, 0, 0.08) !important;
+    transition:
+        box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+button:not(#theme-toggle):not(.menu-btn):not(.chat-close):hover,
+.primary-btn:hover,
+.secondary-btn:hover,
+.contact-btn:hover,
+.submit-btn:hover {
+    transform: translateY(-1px) !important;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.30),
+        0 0 0 1px rgba(0, 0, 0, 0.40),
+        0 1px 2px rgba(0, 0, 0, 0.20),
+        0 4px 4px rgba(0, 0, 0, 0.15),
+        0 8px 5px rgba(0, 0, 0, 0.10) !important;
+}
+
+button:not(#theme-toggle):not(.menu-btn):not(.chat-close):active,
+.primary-btn:active,
+.secondary-btn:active,
+.contact-btn:active,
+.submit-btn:active {
+    transform: translateY(1px) scale(0.98) !important;
+    box-shadow:
+        inset 0 2px 4px rgba(0, 0, 0, 0.35),
+        inset 0 1px 2px rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(0, 0, 0, 0.50),
+        0 1px 2px rgba(0, 0, 0, 0.30) !important;
+}
+
+/* Dark mode: swap the black ring for a light one so the
+   button edge still reads against dark surfaces. */
+[data-theme="dark"] button:not(#theme-toggle):not(.menu-btn):not(.chat-close),
+[data-theme="dark"] .primary-btn,
+[data-theme="dark"] .secondary-btn,
+[data-theme="dark"] .contact-btn,
+[data-theme="dark"] .submit-btn {
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.20),
+        0 0 0 1px rgba(255, 255, 255, 0.14),
+        0 2px 5px rgba(0, 0, 0, 0.40),
+        0 9px 9px rgba(0, 0, 0, 0.35),
+        0 20px 12px rgba(0, 0, 0, 0.30) !important;
+}
+
+/* ═══════════════════════════════════════════════════════
+   Unified Header & Footer — identical on every page,
+   colored to match the page background instead of solid
+   green. The green accent survives in the Contact pill
+   and hover/active states.
+   ═══════════════════════════════════════════════════════ */
+nav {
+    background: var(--bg-nav) !important;
+    background-image: none !important;
+    padding: 14px 28px !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    box-shadow: var(--shadow-sm) !important;
+    border-bottom: 1px solid var(--card-border) !important;
+    backdrop-filter: none !important;
+}
+
+nav .logo-text h1 {
+    color: var(--text-primary) !important;
+    font-size: 22px !important;
+}
+
+nav .logo-text p {
+    color: var(--text-muted) !important;
+    font-size: 12px !important;
+}
+
+nav .nav-links {
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    justify-content: flex-end !important;
+}
+
+nav .nav-links a {
+    color: var(--text-secondary) !important;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+nav .nav-links a:hover,
+nav .nav-links a.active {
+    background: rgba(34, 197, 94, 0.14) !important;
+    color: var(--accent-dark-green) !important;
+    transform: translateY(-1px);
+}
+
+[data-theme="dark"] nav .nav-links a:hover,
+[data-theme="dark"] nav .nav-links a.active {
+    color: var(--accent-green) !important;
+}
+
+/* Contact Us styled like every other nav link */
+nav .nav-links a.contact-btn {
+    background: transparent !important;
+}
+
+/* ── Identical header metrics on every page ── */
+nav .logo img {
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 10px;
+}
+
+nav .nav-links {
+    gap: 10px !important;
+}
+
+nav .nav-links a {
+    font-size: 16px !important;
+    padding: 8px 14px !important;
+    border-radius: 100px !important;
+}
+
+/* Contact illustration: dark version in dark theme */
+[data-theme="dark"] .image-section img {
+    filter: brightness(0.85) contrast(1.05);
+    background: var(--bg-card);
+    border-radius: 16px;
+    padding: 10px;
+}
+
+/* Hamburger + theme toggle adapt to the header surface */
+.menu-btn {
+    color: var(--nav-icon) !important;
+    background: rgba(34, 197, 94, 0.12) !important;
+}
+
+/* ── Footer matched to the page background ── */
+footer.footer {
+    background: var(--bg-footer) !important;
+    color: var(--text-secondary) !important;
+    border-top: 1px solid var(--section-border) !important;
+    box-shadow: none !important;
+}
+
+footer.footer .footer-center h2 {
+    color: var(--text-primary) !important;
+}
+
+footer.footer .footer-center p {
+    color: var(--text-secondary) !important;
+}
+
+footer.footer a {
+    color: var(--text-secondary) !important;
+}
+
+footer.footer a:hover {
+    color: var(--accent-dark-green) !important;
+}
+
+[data-theme="dark"] footer.footer a:hover {
+    color: var(--accent-green) !important;
+}
+
+footer.footer hr {
+    border-color: var(--section-border) !important;
 }

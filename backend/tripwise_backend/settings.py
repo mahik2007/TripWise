@@ -24,9 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-g(l*&)n(x4%wz8n*mj7rv=h9h8zr29d95f45ox-a4+yo95(#k)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+
+FRONTEND_DIR = BASE_DIR.parent
 
 
 # Application definition
@@ -55,14 +57,15 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOW_ALL_ORIGINS=True
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'tripwise_backend.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [FRONTEND_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -83,11 +86,7 @@ WSGI_APPLICATION = 'tripwise_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'tripwise',
-        'USER': 'root',
-        'PASSWORD': 'your_password',
-        'HOST': 'localhost',
-        'PORT':'3306',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -128,3 +127,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [
+    FRONTEND_DIR / 'css',
+    FRONTEND_DIR / 'js',
+    FRONTEND_DIR / 'image',
+]
+
+# Keep model primary keys consistent with the existing migrations.
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

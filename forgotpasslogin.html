@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,6 +7,7 @@
     <title>Forgot Password - TripWise</title>
     <link rel="icon" type="image/png" href="image/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/theme.css?v=8">
     <style>
         * {
             margin: 0;
@@ -17,7 +18,6 @@
 
         html,
         body {
-            background: #f3f4f6;
             overflow-x: hidden;
         }
 
@@ -262,7 +262,7 @@
             color: #d1d5db;
         }
     </style>
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/responsive.css?v=8">
 </head>
 
 <body>
@@ -283,7 +283,7 @@
             <a href="add_expense.html"><i class="fa-solid fa-wallet"></i> Expenses</a>
             <a href="summary.html"><i class="fa-solid fa-chart-pie"></i> Summary</a>
 
-            <a href="aboutus.html"><i class="fa-solid fa-circle-info"></i> About</a>
+
 
             <a href="contact.html" class="contact-btn">
                 <i class="fa-solid fa-phone"></i> Contact Us
@@ -315,6 +315,11 @@
 
             <form action="login.html" method="get">
                 <div class="field">
+                    <label>Your Account Email</label>
+                    <input type="email" name="email" placeholder="Enter your registered email" required>
+                </div>
+
+                <div class="field">
                     <label>New Password</label>
                     <input type="password" placeholder="Enter new password" required>
                 </div>
@@ -343,7 +348,7 @@
         </div>
 
         <div class="footer-bottom">
-            © 2026 TripWise | BS AICS Capstone Project
+            © 2026 TripWise. All rights reserved.
         </div>
     </footer>
 
@@ -352,7 +357,7 @@
             document.getElementById("sidebar").classList.toggle("active");
         }
     </script>
-    <script src="js/script.js"></script>
+    <script src="js/script.js?v=8"></script>
 </body>
 
 </html>

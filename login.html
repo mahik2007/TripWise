@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,6 +7,7 @@
     <title>Login - TripWise</title>
     <link rel="icon" type="image/png" href="image/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/theme.css?v=8">
     <style>
         * {
             margin: 0;
@@ -20,7 +21,6 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-            background: #f3f4f6;
         }
 
         /* Navbar */
@@ -285,7 +285,7 @@
             color: #d1d5db;
         }
     </style>
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/responsive.css?v=8">
 </head>
 
 <body>
@@ -306,7 +306,7 @@
             <a href="add_expense.html"><i class="fa-solid fa-wallet"></i> Expenses</a>
             <a href="summary.html"><i class="fa-solid fa-chart-pie"></i> Summary</a>
 
-            <a href="aboutus.html"><i class="fa-solid fa-circle-info"></i> About</a>
+
 
             <a href="contact.html" class="contact-btn">
                 <i class="fa-solid fa-phone"></i> Contact Us
@@ -340,13 +340,13 @@
 
             <form action="create_trip.html" method="get">
                 <div class="field">
-                    <label>Username</label>
-                    <input type="text" placeholder="Enter your username" required>
+                    <label>Email or Username</label>
+                    <input type="text" name="email" id="loginEmail" placeholder="Enter your email or username" required>
                 </div>
 
                 <div class="field">
                     <label>Password</label>
-                    <input type="password" placeholder="Enter your password" required>
+                    <input type="password" name="password" id="loginPassword" placeholder="Enter your password" required>
                 </div>
 
                 <div class="forgot">
@@ -373,7 +373,7 @@
         </div>
 
         <div class="footer-bottom">
-            © 2026 TripWise | BS AICS Capstone Project
+            © 2026 TripWise. All rights reserved.
         </div>
     </footer>
 
@@ -390,7 +390,7 @@
     <div id="chat-window">
         <div id="chat-header">
             <span><i class="fa-solid fa-robot"></i> TripWise AI</span>
-            <span onclick="toggleChat()" style="cursor:pointer;">✕</span>
+            <span onclick="toggleChat()" style="cursor:pointer;">×</span>
         </div>
         <div id="chat-messages">
             <div class="bot-msg">👋 Hi! I'm TripWise AI.<br>Ask me about splitting expenses or travel budgeting!</div>
@@ -556,12 +556,12 @@ async function sendMessage(){
         messages.innerHTML+=`<div class="bot-msg">${data.reply}</div>`;
     }catch(error){
         document.getElementById('thinking').remove();
-        messages.innerHTML+=`<div class="bot-msg">⚠️ Could not connect.?</div>`;
+            messages.innerHTML += '<div class="bot-msg">I could not connect just now. Please try again in a moment.</div>';
     }
     messages.scrollTop=messages.scrollHeight;
 }
 </script>
-<script src="js/script.js"></script>
+<script src="js/script.js?v=8"></script>
 </body>
 
 </html>

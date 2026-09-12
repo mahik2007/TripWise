@@ -1,0 +1,310 @@
+/* ═══════════════════════════════════════════════════════
+   TripWise Theme System - Dark & Light Mode
+   ═══════════════════════════════════════════════════════ */
+
+/* ── CSS Variables (Light Mode Default) ─────────────── */
+:root {
+    --bg-primary: #f3f4f6;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f9fafb;
+    --bg-input: #ffffff;
+    --bg-input-border: #d1d5db;
+    --bg-nav: #ffffff;
+    --bg-footer: #f3f4f6;
+    --bg-sidebar: #14532d;
+    --bg-expense-block: #f9fafb;
+
+    --text-primary: #111827;
+    --text-secondary: #4b5563;
+    --text-muted: #6b7280;
+    --text-on-green: #ffffff;
+    --text-heading: #14532d;
+
+    --accent-green: #22c55e;
+    --accent-dark-green: #14532d;
+    --accent-mid-green: #15803d;
+
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 20px rgba(0,0,0,0.10);
+    --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
+    --shadow-green: 0 4px 20px rgba(34, 197, 94, 0.25);
+
+    --blur-orb-1: rgba(34, 197, 94, 0.35);
+    --blur-orb-2: rgba(20, 83, 45, 0.25);
+
+    --card-border: rgba(0,0,0,0.04);
+    --section-border: #e5e7eb;
+
+    /* Header chrome that must flip between themes */
+    --nav-icon: #374151;
+    --nav-ring: rgba(0, 0, 0, 0.22);
+
+    --transition: 0.3s ease;
+}
+
+/* ── Dark Mode Overrides ─────────────────────────────── */
+[data-theme="dark"] {
+    --bg-primary: #0d1117;
+    --bg-card: #161b22;
+    --bg-card-hover: #1c2330;
+    --bg-input: #1c2330;
+    --bg-input-border: #30363d;
+    --bg-nav: #0d1117;
+    --bg-footer: #0d1117;
+    --bg-sidebar: #161b22;
+    --bg-expense-block: #1c2330;
+
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted: #6e7681;
+    --text-on-green: #ffffff;
+    --text-heading: #22c55e;
+
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.4);
+    --shadow-md: 0 4px 20px rgba(0,0,0,0.5);
+    --shadow-lg: 0 8px 30px rgba(0,0,0,0.6);
+    --shadow-green: 0 4px 20px rgba(34, 197, 94, 0.2);
+
+    --blur-orb-1: rgba(34, 197, 94, 0.12);
+    --blur-orb-2: rgba(20, 83, 45, 0.10);
+
+    --card-border: rgba(255,255,255,0.06);
+    --section-border: #30363d;
+
+    --nav-icon: #e6edf3;
+    --nav-ring: rgba(255, 255, 255, 0.35);
+}
+
+/* ── Apply Variables to Base Elements ───────────────── */
+/* The page background lives on <html> (root) so it always paints
+   below the beams/silk canvases (z-index -1/-2). The body must stay
+   transparent, otherwise its own background box covers the canvases. */
+html {
+    background: var(--bg-primary) !important;
+}
+
+body {
+    background: transparent !important;
+    color: var(--text-primary) !important;
+    transition: background-color var(--transition), color var(--transition);
+}
+
+body::before { background: var(--blur-orb-1) !important; }
+body::after  { background: var(--blur-orb-2) !important; }
+
+/* Clean flat backgrounds: no floating green orbs in either theme. */
+body::before,
+body::after {
+    display: none !important;
+}
+
+nav {
+    background: var(--bg-nav) !important;
+    transition: background var(--transition);
+}
+
+.sidebar {
+    background: var(--bg-sidebar) !important;
+    transition: background var(--transition);
+}
+
+footer, .footer {
+    background: var(--bg-footer) !important;
+    transition: background var(--transition);
+}
+
+/* Cards & Content Blocks */
+.card, .trip-card, .expense-block, .members,
+.about-box, .login-card, .forgot-card, .create-account,
+.summary-box, .contact-section, .form-section {
+    background: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--card-border) !important;
+    transition: background var(--transition), color var(--transition);
+}
+
+/* Inputs & Selects */
+input, select, textarea {
+    background: var(--bg-input) !important;
+    border-color: var(--bg-input-border) !important;
+    color: var(--text-primary) !important;
+    transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+
+input::placeholder, textarea::placeholder {
+    color: var(--text-muted) !important;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--accent-green) !important;
+    outline: none;
+}
+
+/* Labels */
+label {
+    color: var(--text-secondary) !important;
+    transition: color var(--transition);
+}
+
+/* Headings */
+h1, h2, h3 {
+    color: var(--text-primary) !important;
+    transition: color var(--transition);
+}
+
+/* Main content area */
+.main, main.main {
+    transition: background var(--transition);
+}
+
+/* Feature cards and info blocks */
+.feature-card, .step, .stat-box, .plan-card {
+    background: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+    box-shadow: var(--shadow-md) !important;
+    transition: all var(--transition);
+}
+
+/* Dark mode specific text overrides */
+[data-theme="dark"] p,
+[data-theme="dark"] span,
+[data-theme="dark"] li,
+[data-theme="dark"] td,
+[data-theme="dark"] .subtitle,
+[data-theme="dark"] .description {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4 {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .card-text,
+[data-theme="dark"] .debt-text {
+    color: var(--text-primary) !important;
+}
+
+/* Expense blocks in dark mode */
+[data-theme="dark"] .expense-block {
+    border: 1px solid var(--section-border) !important;
+}
+
+/* Summary box in dark mode */
+[data-theme="dark"] .summary-box {
+    background: linear-gradient(135deg, #0f2417, #1a3a24) !important;
+}
+
+[data-theme="dark"] .summary-box strong,
+[data-theme="dark"] .summary-box div {
+    color: #e6edf3 !important;
+}
+
+/* ── Page surfaces with hardcoded light backgrounds ──
+   These classes are styled with plain `background: white`
+   in each page's inline <style>, so they need explicit
+   dark overrides with !important to win the cascade. */
+[data-theme="dark"] .hero,
+[data-theme="dark"] .features,
+[data-theme="dark"] .welcome,
+[data-theme="dark"] .why-tripwise,
+[data-theme="dark"] .why-card,
+[data-theme="dark"] .feedback-card,
+[data-theme="dark"] .member,
+[data-theme="dark"] #chat-window,
+[data-theme="dark"] #chat-messages,
+[data-theme="dark"] .bot-msg {
+    background: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .main {
+    background: transparent !important;
+}
+
+[data-theme="dark"] .feedback-section {
+    background: rgba(13, 17, 23, 0.6) !important;
+}
+
+[data-theme="dark"] .thinking-msg {
+    background: var(--bg-expense-block) !important;
+    color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] #chat-input-area {
+    border-top-color: var(--section-border) !important;
+}
+
+/* Body text hardcoded to gray tones in the pages */
+[data-theme="dark"] .hero-text p,
+[data-theme="dark"] .welcome p,
+[data-theme="dark"] .feature p,
+[data-theme="dark"] .why-tripwise p,
+[data-theme="dark"] .why-card p,
+[data-theme="dark"] .member p,
+[data-theme="dark"] .feedback-card p {
+    color: var(--text-secondary) !important;
+}
+
+/* ── Theme Toggle Button ─────────────────────────────── */
+#theme-toggle {
+    background: transparent;
+    border: 2px solid var(--nav-ring);
+    color: var(--nav-icon);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+#theme-toggle:hover {
+    background: rgba(34, 197, 94, 0.15);
+    border-color: var(--accent-green);
+    transform: rotate(20deg) scale(1.1);
+}
+
+/* Toast animation */
+@keyframes toastSlideIn {
+    from { opacity:0; transform: translateX(30px); }
+    to   { opacity:1; transform: translateX(0); }
+}
+
+/* ── JS-generated summary cards in dark mode ── */
+[data-theme="dark"] .settled-card {
+    background: #0f2417 !important;
+    border-color: #1c6b3a !important;
+}
+
+[data-theme="dark"] .settled-card h3 {
+    color: #e6edf3 !important;
+}
+
+[data-theme="dark"] .settled-card p {
+    color: #8b949e !important;
+}
+
+[data-theme="dark"] .tx-avatar {
+    background: rgba(34, 197, 94, 0.15) !important;
+    color: #4ade80 !important;
+}
+
+[data-theme="dark"] .amount {
+    color: #4ade80 !important;
+}
+
+[data-theme="dark"] .balance-card {
+    background: var(--bg-card) !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+[data-theme="dark"] .balance-name {
+    color: #e6edf3 !important;
+}

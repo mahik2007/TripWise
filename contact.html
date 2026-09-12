@@ -1,11 +1,13 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
-    <title>Contact Us - TripWise</title>
+        <meta charset="UTF-8">
+<title>Contact Us - TripWise</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="image/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/theme.css?v=8">
 
     <style>
         * {
@@ -287,7 +289,7 @@
         }
     </style>
 
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/responsive.css?v=8">
 </head>
 
 <body>
@@ -308,7 +310,7 @@
             <a href="add_expense.html"><i class="fa-solid fa-wallet"></i> Expenses</a>
             <a href="summary.html"><i class="fa-solid fa-chart-pie"></i> Summary</a>
 
-            <a href="aboutus.html"><i class="fa-solid fa-circle-info"></i> About</a>
+
 
             <a href="contact.html" class="contact-btn active">
                 <i class="fa-solid fa-phone"></i> Contact Us</a>
@@ -372,9 +374,7 @@
 
             <!-- LEFT -->
             <div class="footer-left">
-                <a href="aboutus.html">
-                    <i class="fa-solid fa-circle-info"></i> About Us
-                </a>
+
 
                 <a href="contact.html">
                     <i class="fa-solid fa-phone"></i> Contact Us
@@ -387,7 +387,7 @@
 
             <!-- RIGHT -->
             <div class="footer-right">
-                © 2026 TripWise | BS AICS IIT Patna Semester 2 Capstone Project
+                © 2026 TripWise. All rights reserved.
             </div>
 
         </div>
@@ -406,7 +406,7 @@
     <div id="chat-window">
         <div id="chat-header">
             <span><i class="fa-solid fa-robot"></i> TripWise AI</span>
-            <span onclick="toggleChat()" style="cursor:pointer;">✕</span>
+            <span onclick="toggleChat()" style="cursor:pointer;">×</span>
         </div>
         <div id="chat-messages">
             <div class="bot-msg">👋 Hi! I'm TripWise AI.<br>Ask me about splitting expenses or travel budgeting!</div>
@@ -548,36 +548,7 @@
         }
     </style>
 
-<script>
-function toggleChat(){
-    document.getElementById('chat-window').classList.toggle('open');
-}
-async function sendMessage(){
-    const input=document.getElementById('chat-input');
-    const messages=document.getElementById('chat-messages');
-    const userText=input.value.trim();
-    if(!userText) return;
-    messages.innerHTML+=`<div class="user-msg">${userText}</div>`;
-    input.value='';
-    messages.innerHTML+=`<div class="thinking-msg" id="thinking">TripWise AI is thinking...</div>`;
-    messages.scrollTop=messages.scrollHeight;
-    try{
-        const response=await fetch('http://127.0.0.1:8000/api/chatbot/',{
-            method:'POST',
-            headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({message:userText})
-        });
-        const data=await response.json();
-        document.getElementById('thinking').remove();
-        messages.innerHTML+=`<div class="bot-msg">${data.reply}</div>`;
-    }catch(error){
-        document.getElementById('thinking').remove();
-        messages.innerHTML+=`<div class="bot-msg">⚠️ Could not connect.?</div>`;
-    }
-    messages.scrollTop=messages.scrollHeight;
-}
-</script>
-<script src="js/script.js"></script>
+<script src="js/script.js?v=8"></script>
 </body>
 
 </html>

@@ -78,6 +78,26 @@ Testing & Validation
 5. Views summary of payments
 
 
+## ▶️ Run Locally
+
+**Frontend**
+```
+python -m http.server 5500
+```
+Then open http://localhost:5500
+
+**Backend (Django API)**
+```
+cd backend
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+```
+The API runs at http://127.0.0.1:8000
+
+**AI Chatbot (optional)**: set a `GEMINI_API_KEY` environment variable to enable the Gemini-powered assistant.
+
+
 ## 📜 License
 
 This project was developed as a **BS AICS IIT Patna Semester 2 Capstone Project**

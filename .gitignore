@@ -6,3 +6,8 @@ tripwise_backend/tripwise_backend/__pycache__/
 tripwise_backend/api/__pycache__/
 ai_chatbot/__pycache__/
 tripwise_backend/db.sqlite3
+
+# local dev databases and stale artifacts
+*.sqlite3
+temp_css/
+/tripwise_backend/

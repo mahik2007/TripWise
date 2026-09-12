@@ -1,12 +1,14 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>TripWise - Split your expenses wisely!</title>
+        <meta charset="UTF-8">
+<title>TripWise - Split your expenses wisely!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="icon" type="image/png" href="image/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/theme.css?v=8">
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
     <style>
@@ -336,7 +338,7 @@
         .cta-section {
             display: flex;
             flex-direction: column;
-            /* 👈 forces vertical layout */
+            /* 👇 forces vertical layout */
             align-items: flex-start;
             gap: 10px;
         }
@@ -375,6 +377,57 @@
         }
 
 
+
+        /* Cell ripple loader (replaces the hero illustration) */
+        .cell-loader {
+            --cell-size: 72px;
+            --cell-spacing: 2px;
+            --cells: 3;
+            --total-size: calc(var(--cells) * (var(--cell-size) + 2 * var(--cell-spacing)));
+            display: flex;
+            flex-wrap: wrap;
+            width: var(--total-size);
+            height: var(--total-size);
+            max-width: 100%;
+            margin: auto;
+        }
+
+        @media (max-width: 768px) {
+            .cell-loader {
+                --cell-size: 48px;
+            }
+        }
+
+        .cell-loader .cell {
+            flex: 0 0 var(--cell-size);
+            margin: var(--cell-spacing);
+            background-color: transparent;
+            box-sizing: border-box;
+            border-radius: 4px;
+            animation: cellRipple 1.5s ease infinite;
+        }
+
+        .cell-loader .cell.d-1 { animation-delay: 100ms; }
+        .cell-loader .cell.d-2 { animation-delay: 200ms; }
+        .cell-loader .cell.d-3 { animation-delay: 300ms; }
+        .cell-loader .cell.d-4 { animation-delay: 400ms; }
+
+        .cell-loader .cell:nth-child(1) { --cell-color: #00FF87; }
+        .cell-loader .cell:nth-child(2) { --cell-color: #0CFD95; }
+        .cell-loader .cell:nth-child(3) { --cell-color: #17FBA2; }
+        .cell-loader .cell:nth-child(4) { --cell-color: #23F9B2; }
+        .cell-loader .cell:nth-child(5) { --cell-color: #30F7C3; }
+        .cell-loader .cell:nth-child(6) { --cell-color: #3DF5D4; }
+        .cell-loader .cell:nth-child(7) { --cell-color: #45F4DE; }
+        .cell-loader .cell:nth-child(8) { --cell-color: #53F1F0; }
+        .cell-loader .cell:nth-child(9) { --cell-color: #60EFFF; }
+
+        @keyframes cellRipple {
+            0%   { background-color: transparent; }
+            30%  { background-color: var(--cell-color); }
+            60%  { background-color: transparent; }
+            100% { background-color: transparent; }
+        }
 
         .hero-image img {
             width: 420px;
@@ -730,7 +783,7 @@
             }
         }
     </style>
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/responsive.css?v=8">
 </head>
 
 <body>
@@ -763,7 +816,7 @@
             <a href="add_expense.html"><i class="fa-solid fa-wallet"></i> Expenses</a>
             <a href="summary.html"><i class="fa-solid fa-chart-pie"></i> Summary</a>
 
-            <a href="aboutus.html"><i class="fa-solid fa-circle-info"></i> About</a>
+
 
             <a href="contact.html" class="contact-btn">
                 <i class="fa-solid fa-phone"></i> Contact Us
@@ -785,7 +838,7 @@
         <a href="create_trip.html">Create Trip</a>
         <a href="add_expense.html">Expenses</a>
         <a href="summary.html">Summary</a>
-        <a href="aboutus.html">About</a>
+
     </div>
 
     <!-- MAIN -->
@@ -801,34 +854,37 @@
                     Manage group trips, track expenses, and settle balances easily with TripWise.
                 </p>
                 <br>
+                <div class="trust-wrapper">
+                    <!-- Profile Icons -->
+                    <div class="trust-users">
+                        <div class="user u1">M</div>
+                        <div class="user u2">H</div>
+                        <div class="user u3">M</div>
+                        <div class="user u4">R</div>
+                        <div class="user u5">A</div>
+                    </div>
+                    <!-- Text -->
+                    <p class="trust-text">
+                        Joined by <b>10,000+</b> travelers
+                    </p>
+                </div>
+                <br>
                 <div class="buttons">
-                    <button class="primary-btn" onclick="window.location.href='login.html'">Get Started →</button>
-                    <button class="secondary-btn" onclick="window.location.href='aboutus.html'">Learn More →</button>
+                    <button class="primary-btn" onclick="window.location.href='login.html'">Get Started <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
                 </div>
             </div>
-            <div class="trust-wrapper">
-
-
-
-                <!-- Profile Icons -->
-                <div class="trust-users">
-                    <div class="user u1">M</div>
-                    <div class="user u2">H</div>
-                    <div class="user u3">M</div>
-                    <div class="user u4">R</div>
-                    <div class="user u5">A</div>
-                </div>
-
-                <!-- Text -->
-                <p class="trust-text">
-                    Joined by <b>10,000+</b> travelers
-                </p>
-
-            </div>
-
-
             <div class="hero-image">
-                <img src="image/travel.png" alt="TripWise Illustration" width="500" height="300">
+                <div class="cell-loader" aria-hidden="true">
+                    <div class="cell d-0"></div>
+                    <div class="cell d-1"></div>
+                    <div class="cell d-2"></div>
+                    <div class="cell d-1"></div>
+                    <div class="cell d-2"></div>
+                    <div class="cell d-2"></div>
+                    <div class="cell d-3"></div>
+                    <div class="cell d-3"></div>
+                    <div class="cell d-4"></div>
+                </div>
             </div>
         </div>
 
@@ -915,7 +971,7 @@
 
 
     <div class="why-section">
-        <h2>💚 Why Choose TripWise?</h2>
+        <h2><i class="fa-solid fa-heart" aria-hidden="true"></i> Why Choose TripWise?</h2>
 
         <div class="why-container">
 
@@ -955,7 +1011,7 @@
 
     <div class="feedback-section">
 
-        <h2 class="feedback-title">💬 Users Feedback</h2>
+        <h2 class="feedback-title"><i class="fa-solid fa-comments" aria-hidden="true"></i> Traveller Feedback</h2>
 
         <div class="feedback-container">
 
@@ -968,7 +1024,7 @@
                 <center>
                     <h4> Meghna Srivastava</h4>
                 </center>
-                <div class="stars">★★★★★</div>
+                <div class="stars" aria-label="5 out of 5 stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                 <p>"TripWise made our Goa trip stress-free! No confusion about who paid what — everything was clear and
                     instant."</p>
 
@@ -979,7 +1035,7 @@
                 <center>
                     <h4> Halil</h4>
                 </center>
-                <div class="stars">★★★★★</div>
+                <div class="stars" aria-label="5 out of 5 stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                 <p>"Earlier we used notes and calculators, now TripWise handles everything. The summary feature is a
                     lifesaver!"</p>
             </div>
@@ -989,7 +1045,7 @@
                 <center>
                     <h4> Manasvi Jain</h4>
                 </center>
-                <div class="stars">★★★★★</div>
+                <div class="stars" aria-label="5 out of 5 stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                 <p>"Splitting expenses with friends has never been this easy. Clean UI and super smooth experience!"</p>
 
             </div>
@@ -999,8 +1055,8 @@
                 <center>
                     <h4> Rishabh Srivastava</h4>
                 </center>
-                <div class="stars">★★★★★</div>
-                <p>"The balance tracking is amazing! No awkward conversations anymore after trips 😄"</p>
+                <div class="stars" aria-label="5 out of 5 stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p>"The balance tracking is amazing! No awkward conversations anymore after trips 😊"</p>
 
             </div>
 
@@ -1009,7 +1065,7 @@
                 <center>
                     <h4> Atish Kumar</h4>
                 </center>
-                <div class="stars">★★★★★</div>
+                <div class="stars" aria-label="5 out of 5 stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                 <p>"TripWise helped us manage our college trip expenses perfectly. Highly recommended!"</p>
 
             </div>
@@ -1038,9 +1094,7 @@
 
             <!-- LEFT -->
             <div class="footer-left">
-                <a href="aboutus.html">
-                    <i class="fa-solid fa-circle-info"></i> About Us
-                </a>
+
 
                 <a href="contact.html">
                     <i class="fa-solid fa-phone"></i> Contact Us
@@ -1053,7 +1107,7 @@
 
             <!-- RIGHT -->
             <div class="footer-right">
-                © 2026 TripWise | BS AICS IIT Patna Semester 2 Capstone Project
+                &copy; 2026 TripWise. All rights reserved.
             </div>
 
         </div>
@@ -1081,10 +1135,10 @@
     <div id="chat-window">
         <div id="chat-header">
             <span><i class="fa-solid fa-robot"></i> TripWise AI</span>
-            <span onclick="toggleChat()" style="cursor:pointer;">✕</span>
+            <button type="button" class="chat-close" onclick="toggleChat()" aria-label="Close chat"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div id="chat-messages">
-            <div class="bot-msg">👋 Hi! I'm TripWise AI.<br>Ask me about splitting expenses or travel budgeting!</div>
+            <div class="bot-msg">Hi! I’m TripWise AI. Ask me about splitting expenses, trip budgets, or settling balances.</div>
         </div>
         <div id="chat-input-area">
             <input type="text" id="chat-input" placeholder="Ask something..."
@@ -1223,36 +1277,7 @@
         }
     </style>
 
-    <script>
-        function toggleChat() {
-            document.getElementById('chat-window').classList.toggle('open');
-        }
-        async function sendMessage() {
-            const input = document.getElementById('chat-input');
-            const messages = document.getElementById('chat-messages');
-            const userText = input.value.trim();
-            if (!userText) return;
-            messages.innerHTML += `<div class="user-msg">${userText}</div>`;
-            input.value = '';
-            messages.innerHTML += `<div class="thinking-msg" id="thinking">TripWise AI is thinking...</div>`;
-            messages.scrollTop = messages.scrollHeight;
-            try {
-                const response = await fetch('http://127.0.0.1:8000/api/chatbot/', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: userText })
-                });
-                const data = await response.json();
-                document.getElementById('thinking').remove();
-                messages.innerHTML += `<div class="bot-msg">${data.reply}</div>`;
-            } catch (error) {
-                document.getElementById('thinking').remove();
-                messages.innerHTML += `<div class="bot-msg">⚠️ Could not connect.?</div>`;
-            }
-            messages.scrollTop = messages.scrollHeight;
-        }
-    </script>
-    <script src="js/script.js"></script>
+    <script src="js/script.js?v=8"></script>
 </body>
 
 </html>
