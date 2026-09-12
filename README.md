@@ -12,11 +12,6 @@ TripWise is a web-based travel expense management application designed to make i
 
 Instead of manually calculating expenses or using complicated spreadsheets, TripWise provides a clean and intuitive interface for managing trip finances in one place.
 
----
-
-## 🌐 Live Website
-
-🔗 https://mahik2007.github.io/TripWise.github.io/
 
 ---
 
