@@ -187,4 +187,4 @@ Some planned improvements include:
 
 TripWise was developed as a **BS AICS IIT Patna Semester 2 Capstone Project** to explore web development, frontend design, JavaScript logic, and expense-management workflows.
 
-© 2026 TripWise Team
+© 2026 TripWise
