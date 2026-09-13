@@ -6,13 +6,15 @@
 // â”€â”€â”€ CONFIGURATION & HELPERS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function getApiBaseUrl() {
-    if (window.location.protocol.startsWith('http')) {
-        if (window.location.port === '8000' || window.location.host.includes('127.0.0.1') || window.location.host.includes('localhost')) {
-            return `${window.location.protocol}//${window.location.hostname}:8000`;
-        }
-        return window.location.origin;
+    if (
+        window.location.hostname === 'localhost' ||
+        window.location.hostname === '127.0.0.1' ||
+        window.location.port === '8000'
+    ) {
+        return `${window.location.protocol}//${window.location.hostname}:8000`;
     }
-    return 'http://127.0.0.1:8000';
+
+    return 'https://tripwise-backend-two.vercel.app';
 }
 
 const API_BASE_URL = getApiBaseUrl();
